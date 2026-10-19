@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Sign in | LinkPulse{% endblock %}
+{% block body %}
+<main class="auth-page px-5 py-12">
+  <section class="auth-card">
+    <a href="/" class="brand justify-center"><span class="brand-mark"><i class="fa-solid fa-arrow-up-right-from-square"></i></span><span>LinkPulse</span></a>
+    <div class="mt-8 text-center"><p class="eyebrow">YOUR WORKSPACE, IN ONE PLACE</p><h1 class="mt-2 text-2xl font-bold">Welcome to LinkPulse</h1><p class="mt-2 text-sm leading-6 text-slate-500">Sign in or create an account to manage your links.</p></div>
+    {% if error %}<p class="form-alert mt-5">{{ error }}</p>{% endif %}
+    <div class="mt-6 grid grid-cols-2 rounded-lg bg-slate-100 p-1" role="tablist"><button type="button" class="auth-tab active" data-auth-tab="login">Sign in</button><button type="button" class="auth-tab" data-auth-tab="register">Create account</button></div>
+    <section class="mt-5" aria-label="Judge demo accounts"><p class="field-label">Judge demo access</p><div class="mt-2 grid gap-2 sm:grid-cols-2"><article class="flex items-center justify-between gap-2 rounded-lg border border-slate-200 bg-slate-50 p-3 text-xs"><div class="min-w-0"><strong class="block text-slate-800">User</strong><span class="mt-1 block truncate font-mono text-slate-600">alex@example.com</span><span class="mt-1 block font-mono text-slate-600">AlexPass123!</span></div><button type="button" class="button button-outline shrink-0 px-3" data-demo-role="User" data-demo-email="alex@example.com" data-demo-password="AlexPass123!">Use</button></article><article class="flex items-center justify-between gap-2 rounded-lg border border-slate-200 bg-slate-50 p-3 text-xs"><div class="min-w-0"><strong class="block text-slate-800">Admin</strong><span class="mt-1 block truncate font-mono text-slate-600">admin@linkpulse.local</span><span class="mt-1 block font-mono text-slate-600">AdminPass123!</span></div><button type="button" class="button button-outline shrink-0 px-3" data-demo-role="Admin" data-demo-email="admin@linkpulse.local" data-demo-password="AdminPass123!">Use</button></article></div></section>
+    <form id="login-form" class="mt-5 space-y-4" action="/api/auth/login" method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}"><input type="hidden" name="role" id="login-role" value="{{ request.query_params.get('role', 'User') }}">
+      <label class="field-label">Email address<input class="field-input mt-2" type="email" name="email" placeholder="you@example.com" autocomplete="email" required></label>
+      <label class="field-label">Password<input class="field-input mt-2" type="password" name="password" autocomplete="current-password" required></label>
+      <button class="sr-only" type="submit">Sign in</button>
+      <div class="grid grid-cols-2 gap-2"><button type="button" class="button button-primary w-full" data-role-choice="User">Continue as User</button><button type="button" class="button button-outline w-full" data-role-choice="Admin">Admin Login</button></div>
+    </form>
+    <form id="register-form" class="mt-5 hidden space-y-4" action="/api/auth/register" method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <label class="field-label">Display name<input class="field-input mt-2" type="text" name="username" maxlength="100" autocomplete="name" required></label>
+      <label class="field-label">Email address<input class="field-input mt-2" type="email" name="email" placeholder="you@example.com" autocomplete="email" required></label>
+      <label class="field-label">Password<input class="field-input mt-2" type="password" name="password" minlength="10" autocomplete="new-password" required><span class="mt-1 block text-xs text-slate-500">Use at least 10 characters.</span></label>
+      <button class="button button-primary w-full" type="submit">Create user account</button>
+    </form>
+    <p class="mt-6 text-center text-xs leading-5 text-slate-500">Users manage their own short links. Administrators have separate platform controls.</p>
+  </section>
+</main>
+{% endblock %}
