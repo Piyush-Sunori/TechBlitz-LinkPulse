@@ -55,6 +55,7 @@ class Link(Base):
     expires_at: Mapped[object | None] = mapped_column(DateTime, nullable=True)
     click_limit: Mapped[int | None] = mapped_column(Integer, nullable=True)
     current_clicks: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    bot_clicks: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
     password_hash: Mapped[str | None] = mapped_column(String(255), nullable=True)
     user_id: Mapped[int] = mapped_column(BigInteger, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
     campaign_id: Mapped[int | None] = mapped_column(BigInteger, ForeignKey("campaigns.id", ondelete="SET NULL"), nullable=True)
@@ -78,6 +79,7 @@ class Click(Base):
     country: Mapped[str | None] = mapped_column(String(100), nullable=True)
     city: Mapped[str | None] = mapped_column(String(100), nullable=True)
     referrer: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    visitor_hash: Mapped[str | None] = mapped_column(String(64), nullable=True)
 
     link: Mapped[Link] = relationship(back_populates="clicks")
 
