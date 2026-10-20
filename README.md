@@ -50,9 +50,8 @@ LinkPulse resolves short links on the server via native HTTP redirects while rec
 ## 🔑 Judge Demo Accounts
 
 | Role | Email | Password | Access Capabilities |
-| :--- | :--- | :--- | :--- |
-| **Standard User** |  |  | Create links, CSV import, view personal analytics |
-| **Administrator** |  |  | Platform governance, user suspension, link deactivation |
+| **Standard User** | maya@example.com  | MayaPass123! | Create links, CSV import, view personal analytics |
+| **Administrator** | admin@linkpulse.local | AdminPass123! | Platform governance, user suspension, link deactivation |
 
 ---
 
@@ -78,15 +77,6 @@ To wipe all tables and re-initialize a clean database schema, run:
 
 ---
 
-## 📸 Screenshots
-
-| Public Landing Page | User Analytics Dashboard |
-| :---: | :---: |
-| *(Add screenshot / GIF)* | *(Add screenshot / GIF)* |
-
-| Link Creation Workspace | Admin Governance Console |
-| :---: | :---: |
-| *(Add screenshot / GIF)* | *(Add screenshot / GIF)* |
 
 ---
 
